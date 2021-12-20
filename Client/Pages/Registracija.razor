@@ -1,0 +1,8 @@
+﻿@page "/registracija"
+@inject ChatApp2.Client.ViewModeli.IUser UserVM
+<EditForm Model=UserVM.UserModel OnSubmit=UserVM.Registracija>
+    <InputText @bind-Value=UserVM.UserModel.UserName/>
+    <InputText @bind-Value=UserVM.UserModel.UserMail/>
+    <InputText @bind-Value=UserVM.UserModel.UserPassword/>
+    <button type="submit">Registracija</button>
+</EditForm>

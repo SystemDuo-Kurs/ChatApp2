@@ -13,6 +13,8 @@ builder.Services.AddSignalR();
 builder.Services.AddDbContext<Db>
     (options=>options.UseSqlServer
     (builder.Configuration.GetConnectionString("Baza")));
+builder.Services.AddTransient<IKorisnikServis, KorisnikServis>();
+
 
 var app = builder.Build();
 
