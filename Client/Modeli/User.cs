@@ -15,13 +15,13 @@
         public ChatApp2.Shared.User UserDTO { get => _userDTO; }
         public string UserName
         {
-            get => _userDTO.Name;
-            set => _userDTO.Name = value;
+            get => _userDTO.UserName;
+            set => _userDTO.UserName = value;
         }
         public string UserMail
         {
-            get => _userDTO.Mail;
-            set => _userDTO.Mail = value;
+            get => _userDTO.Email;
+            set => _userDTO.Email = value;
         }
         public string UserPassword
         {

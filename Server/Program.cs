@@ -1,5 +1,6 @@
 using ChatApp2.Server;
 using ChatApp2.Server.Hubs;
+using ChatApp2.Shared;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,8 @@ builder.Services.AddDbContext<Db>
     (options=>options.UseSqlServer
     (builder.Configuration.GetConnectionString("Baza")));
 builder.Services.AddTransient<IKorisnikServis, KorisnikServis>();
+builder.Services.AddIdentityCore<User>()
+    .AddEntityFrameworkStores<Db>();
 
 
 var app = builder.Build();
@@ -30,6 +33,9 @@ else
 
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseRouting();
 app.MapHub<UserHub>("uHub");

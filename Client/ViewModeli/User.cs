@@ -5,6 +5,7 @@ namespace ChatApp2.Client.ViewModeli
     public interface IUser
     {
         void Registracija();
+        void Login();
         Modeli.IUser UserModel { get; }
     }
     public class User:IUser
@@ -20,6 +21,10 @@ namespace ChatApp2.Client.ViewModeli
         public async void Registracija()
         {
             await _signalRService.UserHub.SendAsync("Registracija",_userModel.UserDTO);
+        }
+        public async void Login()
+        {
+            await _signalRService.UserHub.SendAsync("Login", _userModel.UserDTO);
         }
     }
 }

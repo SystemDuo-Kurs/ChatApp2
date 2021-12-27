@@ -1,0 +1,7 @@
+﻿@page "/login"
+@inject ChatApp2.Client.ViewModeli.IUser UserVM
+<EditForm Model=UserVM.UserModel OnSubmit=UserVM.Login>
+    <InputText @bind-Value=UserVM.UserModel.UserName/>
+    <InputText @bind-Value=UserVM.UserModel.UserPassword/>
+    <button type="submit">Login</button>
+</EditForm>

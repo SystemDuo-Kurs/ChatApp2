@@ -12,10 +12,20 @@ namespace ChatApp2.Server.Hubs
             _korisnikServis = korisnikServis;
             _logger = logger;
         }
-        public void Registracija(User user)
+        public async Task Registracija(User user)
         {
             _logger.LogInformation("Registracija je u toku");
-            _korisnikServis.Registruj(user);
+            await _korisnikServis.Registruj(user);
+
+        }
+        public async Task Login(User user)
+        {
+            _logger.LogInformation("Login je u toku");
+            var rez = await _korisnikServis.Login(user);
+            if (rez)
+                _logger.LogInformation("Login OK");
+            else
+                _logger.LogError("Login JOK");
 
         }
     }
