@@ -26,6 +26,7 @@ namespace ChatApp2.Server.Hubs
                 _logger.LogInformation("Login OK");
             else
                 _logger.LogError("Login JOK");
+            await Clients.Caller.SendAsync("login", rez);
 
         }
     }

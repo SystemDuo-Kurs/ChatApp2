@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using ChatApp2.Client;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -10,6 +11,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddSingleton<SignalRService>();
 builder.Services.AddTransient<ChatApp2.Client.Modeli.IUser, ChatApp2.Client.Modeli.User>();
 builder.Services.AddTransient<ChatApp2.Client.ViewModeli.IUser, ChatApp2.Client.ViewModeli.User>();
+builder.Services.AddBlazoredLocalStorage();
 
 var app = builder.Build();
 app.Services.GetService<SignalRService>();
