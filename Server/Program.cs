@@ -15,6 +15,7 @@ builder.Services.AddDbContext<Db>
     (options=>options.UseSqlServer
     (builder.Configuration.GetConnectionString("Baza")));
 builder.Services.AddTransient<IKorisnikServis, KorisnikServis>();
+builder.Services.AddTransient<IChatService, ChatService>();
 builder.Services.AddIdentityCore<User>()
     .AddEntityFrameworkStores<Db>();
 

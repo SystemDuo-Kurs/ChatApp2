@@ -10,9 +10,11 @@ namespace ChatApp2.Client
         public HubConnection UserHub { get; set; }
         public SignalRService(NavigationManager nm)
         {
-            ChatHub = new HubConnectionBuilder()
-                .WithUrl(nm.BaseUri + "cHub")
-                .Build();
+            var builder = new HubConnectionBuilder();
+            
+            builder.WithUrl(nm.BaseUri + "cHub");
+            
+            ChatHub = builder.Build();
 
             UserHub = new HubConnectionBuilder()
                 .WithUrl(nm.BaseUri + "uHub")

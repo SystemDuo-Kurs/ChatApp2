@@ -7,6 +7,7 @@ namespace ChatApp2.Server
     {
         Task Registruj(User user);
         Task<bool> Login(User user);
+        Task<User> GetUserByName(string name);
     }
 
     public class KorisnikServis:IKorisnikServis
@@ -18,6 +19,9 @@ namespace ChatApp2.Server
             _userManager = userManager;
             _logger = loger;
         }
+
+        public async Task<User> GetUserByName(string name)
+            => await _userManager.FindByNameAsync(name);
 
         public async Task<bool> Login(User user)
         {

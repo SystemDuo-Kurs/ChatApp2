@@ -1,6 +1,6 @@
 ﻿@page "/chat"
-<h3>Chat</h3>
-
-@code {
-
-}
+@inject ChatApp2.Client.ViewModeli.ISlanjePoruke SlanjeVM
+<EditForm Model=SlanjeVM.Poruka OnSubmit=SlanjeVM.Slanje>
+    <InputText @bind-Value=SlanjeVM.Poruka.Content/>
+    <button type="submit">Slanje</button>
+</EditForm>

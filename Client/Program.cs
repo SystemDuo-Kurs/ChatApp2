@@ -11,6 +11,8 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddSingleton<SignalRService>();
 builder.Services.AddTransient<ChatApp2.Client.Modeli.IUser, ChatApp2.Client.Modeli.User>();
 builder.Services.AddTransient<ChatApp2.Client.ViewModeli.IUser, ChatApp2.Client.ViewModeli.User>();
+builder.Services.AddTransient<ChatApp2.Client.Modeli.IMessage, ChatApp2.Client.Modeli.Message>();
+builder.Services.AddTransient<ChatApp2.Client.ViewModeli.ISlanjePoruke, ChatApp2.Client.ViewModeli.SlanjePoruke>();
 builder.Services.AddBlazoredLocalStorage();
 
 var app = builder.Build();
