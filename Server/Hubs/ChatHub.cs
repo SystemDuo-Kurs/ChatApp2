@@ -23,7 +23,8 @@ namespace ChatApp2.Server.Hubs
         public async Task SendMessages()
         {
             _logger.LogInformation("Getting all messages");
-            await Clients.Caller.SendAsync("SendMessages", _chatServis.GetAllMessages());
+            var tst = _chatServis.GetAllMessages();
+            await Clients.Caller.SendAsync("PorukeKaKlijentu", tst);
         }
     }
 }

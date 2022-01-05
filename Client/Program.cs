@@ -13,6 +13,8 @@ builder.Services.AddTransient<ChatApp2.Client.Modeli.IUser, ChatApp2.Client.Mode
 builder.Services.AddTransient<ChatApp2.Client.ViewModeli.IUser, ChatApp2.Client.ViewModeli.User>();
 builder.Services.AddTransient<ChatApp2.Client.Modeli.IMessage, ChatApp2.Client.Modeli.Message>();
 builder.Services.AddTransient<ChatApp2.Client.ViewModeli.ISlanjePoruke, ChatApp2.Client.ViewModeli.SlanjePoruke>();
+builder.Services.AddScoped<ChatApp2.Client.ViewModeli.IPregledPoruka, ChatApp2.Client.ViewModeli.PregledPoruka>();
+
 builder.Services.AddBlazoredLocalStorage();
 
 var app = builder.Build();
