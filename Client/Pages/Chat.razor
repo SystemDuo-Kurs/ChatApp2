@@ -5,7 +5,7 @@
 <ul>
     @foreach(var p in PregledVM.Messages)
     {
-        <li>@p.User : @p.Content</li>
+        <li>@p.UserName : @p.Content</li>
     }
 </ul>
 <EditForm Model=SlanjeVM.Poruka OnSubmit=SlanjeVM.Slanje>

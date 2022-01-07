@@ -15,6 +15,10 @@
 
         public string Content { get => _message.Content; set => _message.Content = value; }
         public DateTime Sent { get => _message.Sent; set => _message.Sent = value;}
+        public string UserName { get => _message.User?.UserName; }
+
+        public static implicit operator Message(ChatApp2.Shared.Message m)
+            => new Message {  _message = m };
 
     }
 }

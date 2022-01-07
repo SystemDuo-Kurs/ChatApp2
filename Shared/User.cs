@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ChatApp2.Shared
@@ -10,6 +11,8 @@ namespace ChatApp2.Shared
     public class User : IdentityUser
     {
         public string Password { get; set; }
+
+        [JsonIgnore]
         public List<Message> Messages { get; set; }
     }
 }

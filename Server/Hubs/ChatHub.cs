@@ -17,6 +17,7 @@ namespace ChatApp2.Server.Hubs
         {
             _logger.LogInformation("SignalR msg rcvd :)");
             await _chatServis.MsgRcv(m);
+            await Clients.All.SendAsync("StiglaPoruka", m);
             _logger.LogInformation("SignalR done");
         }
 

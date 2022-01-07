@@ -22,8 +22,9 @@ namespace ChatApp2.Server
 
         public List<Message> GetAllMessages()
         {
-            _db.AppUsers.Select(u => new User { UserName = u.UserName }).ToList();
-            return _db.Messages.OrderBy(m => m.Sent).ToList();
+            _db.AppUsers.ToList();
+            var rez = _db.Messages.OrderBy(m => m.Sent).ToList();
+            return rez ;
         }
         
         public async Task MsgRcv(Message m)
