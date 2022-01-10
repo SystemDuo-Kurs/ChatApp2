@@ -1,8 +1,43 @@
 ﻿@page "/registracija"
 @inject ChatApp2.Client.ViewModeli.IUser UserVM
-<EditForm Model=UserVM.UserModel OnSubmit=UserVM.Registracija>
+@inject NavigationManager NM
+<EditForm Model=UserVM.UserModel OnSubmit=Reg>
     <InputText @bind-Value=UserVM.UserModel.UserName/>
     <InputText @bind-Value=UserVM.UserModel.UserMail/>
     <InputText @bind-Value=UserVM.UserModel.UserPassword/>
     <button type="submit">Registracija</button>
 </EditForm>
+<ul>
+    @foreach(string greska in Greske)
+    {
+        <li>@greska</li>    
+    }
+</ul>
+@code
+{
+    private List<string> Greske { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        UserVM.WorkComplete += Status;
+    }
+    private async Task Reg()
+    {
+        await UserVM.Registracija();
+        Greske = new();
+        UserVM.UserModel.UserPassword = string.Empty;
+        StateHasChanged();
+    }
+
+    private void Status()
+    {
+        if (UserVM.StatusOperacije.Uspesno)
+            NM.NavigateTo("/login");
+        else
+        {
+            Greske = UserVM.StatusOperacije.Greske;
+            
+            StateHasChanged();
+        }
+    }
+}

@@ -8,6 +8,11 @@ h1:focus {
     outline: none;
 }
 
+.demo-mat-card-content {
+    padding: 1rem;
+    background-color: red;
+}
+
 a, .btn-link {
     color: #0071c1;
 }

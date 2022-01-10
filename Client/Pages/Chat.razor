@@ -1,6 +1,8 @@
 ﻿@page "/chat"
+@using System.Collections.Specialized
 @inject ChatApp2.Client.ViewModeli.ISlanjePoruke SlanjeVM
 @inject ChatApp2.Client.ViewModeli.IPregledPoruka PregledVM
+
 
 <ul>
     @foreach(var p in PregledVM.Messages)
@@ -15,18 +17,11 @@
 
 @code
 {
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        Osvezavanje();
-    }
-
-    private async Task Osvezavanje()
-    {
-        do
-        {
-            await Task.Delay(500);
-            StateHasChanged();
-        } while (true);
+        PregledVM.Messages.CollectionChanged += 
+            (object? sender, NotifyCollectionChangedEventArgs e)
+            => StateHasChanged();
     }
 }
 

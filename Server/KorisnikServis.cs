@@ -3,18 +3,21 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ChatApp2.Server
 {
-    public interface IKorisnikServis 
+    public interface IKorisnikServis
     {
-        Task Registruj(User user);
+        Task<List<string>> Registruj(User user);
+
         Task<bool> Login(User user);
+
         Task<User> GetUserByName(string name);
     }
 
-    public class KorisnikServis:IKorisnikServis
+    public class KorisnikServis : IKorisnikServis
     {
         private readonly UserManager<User> _userManager;
-        private readonly ILogger _logger;   
-        public KorisnikServis(ILogger<KorisnikServis> loger, UserManager<User> userManager) 
+        private readonly ILogger _logger;
+
+        public KorisnikServis(ILogger<KorisnikServis> loger, UserManager<User> userManager)
         {
             _userManager = userManager;
             _logger = loger;
@@ -29,28 +32,16 @@ namespace ChatApp2.Server
             return await _userManager.CheckPasswordAsync(korisnikZaista, user.Password);
         }
 
-        public async Task Registruj(User user)
+        public async Task<List<string>> Registruj(User user)
         {
             _logger.LogInformation("Pokusaj registracije korisnika");
             var rezultat = await _userManager.CreateAsync(user, user.Password);
+            List<string> greske = new();
 
+            if (!rezultat.Succeeded)
+                rezultat.Errors.ToList().ForEach(g => greske.Add(g.Description));
 
-
-            /*if (_db.Users.Where(u => u.Name.ToLower() == user.Name.ToLower()
-                || u.Mail.ToLower()==user.Mail.ToLower()).Any())
-            {
-                _logger.LogError("Korisnik vec postoji");
-                
-            }else
-            {
-                _db.Add(user);
-                _db.SaveChanges();
-                _logger.LogInformation("Korisnik registrovan");
-            }*/
-
-
-
+            return greske;
         }
-            
     }
 }

@@ -1,5 +1,6 @@
 using Blazored.LocalStorage;
 using ChatApp2.Client;
+using MatBlazor;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -16,6 +17,7 @@ builder.Services.AddTransient<ChatApp2.Client.ViewModeli.ISlanjePoruke, ChatApp2
 builder.Services.AddTransient<ChatApp2.Client.ViewModeli.IPregledPoruka, ChatApp2.Client.ViewModeli.PregledPoruka>();
 
 builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddMatBlazor();
 
 var app = builder.Build();
 app.Services.GetService<SignalRService>();
